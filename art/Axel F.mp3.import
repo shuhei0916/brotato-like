@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dvbwnvw0lm7x7"
+path="res://.godot/imported/Axel F.mp3-9a4c2a090f743aa8142d9fc7a4eb2493.mp3str"
+
+[deps]
+
+source_file="res://art/Axel F.mp3"
+dest_files=["res://.godot/imported/Axel F.mp3-9a4c2a090f743aa8142d9fc7a4eb2493.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
