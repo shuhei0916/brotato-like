@@ -61,13 +61,17 @@ func _physics_process(delta):
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		if not is_invincible:
+			is_invincible = true
 			# ココ長いから関数化する？？
 			$AnimationPlayer.play("hit")
-#			await $AnimationPlayer.animation_finished
+			await $AnimationPlayer.animation_finished
 			health -= 1
 			print(health, " / ", maxhealth)
-			is_invincible = true
-			$InvincibleTimer.start()
+			
+			# 一時的に無敵状態にするためのタイマーを作成
+			await get_tree().create_timer(1.0).timeout
+			is_invincible = false
+			
 			if health <= 0:
 				print("player died!")
 				died.emit()
@@ -89,9 +93,3 @@ func start(pos):
 
 func _on_shoot_timer_timeout():
 	pass
-#	shoot()
-	
-
-func _on_invincible_timer_timeout():
-	is_invincible = false
-	$InvincibleTimer.start()
