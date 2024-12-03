@@ -1,10 +1,5 @@
-"""
-ヘルスバー
-"""
-
 extends CharacterBody2D
 
-#var Bullet = preload("res://bullet.tscn")
 @export var Bullet: PackedScene
 
 signal died
@@ -16,7 +11,6 @@ var is_invincible = false
 
 #弾関連
 var radius = 50
-# 一度に発射される弾の数　
 @export var num_bullets = 8
 @export var bullet_speed  = 500
 
@@ -53,18 +47,13 @@ func shoot():
 
 func _physics_process(delta):
 	get_input()
-#	print(is_invincible)
 	# move_and_slide()は計算にタイムステップを自動的に含めるため、速度ベクトルにはdeltaを描けないこと。
 	move_and_slide()
-	
 
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		if not is_invincible:
 			is_invincible = true
-			# ココ長いから関数化する？？
-			$AnimationPlayer.play("hit")
-			await $AnimationPlayer.animation_finished
 			health -= 1
 			print(health, " / ", maxhealth)
 			
@@ -77,19 +66,12 @@ func _physics_process(delta):
 				died.emit()
 				$CollisionShape2D.set_deferred("disabled", true)
 
-
-# 対象と重なったとき
-#func _on_area_2d_body_entered(_body):
-#	modulate = Color(1, 0.5, 0.5)
-#	print("hit!")
 	
 func start(pos):
 	health = maxhealth
 	position = pos
 	show()
 	$CollisionShape2D.disabled = false
-#	$ShootTimer.start()
-	
 
 func _on_shoot_timer_timeout():
 	pass
