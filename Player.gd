@@ -50,6 +50,7 @@ func _physics_process(delta):
 	# move_and_slide()は計算にタイムステップを自動的に含めるため、速度ベクトルにはdeltaを描けないこと。
 	move_and_slide()
 
+	# このfor文あんまりわかってない
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		if not is_invincible:
